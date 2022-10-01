@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import { Container } from "@mui/material";
+
+import WalletGuard from "./guards/WalletGuard";
+import ConnectGuard from "./guards/ConnectGuard";
+
+import NetworkUpdater from "./features/network/NetworkUpdater";
+import TokenUpdater from "./features/token/TokenUpdater";
+
+import TokenInit from "./features/token/TokenInit";
+import Dashboard from "./features/token/Dashboard";
+import Transfer from "./features/token/Transfer";
+
+const App = () => (
+  <Container fixed maxWidth="sm" sx={{ marginY: 4 }}>
+    <WalletGuard>
+      <ConnectGuard>
+        <NetworkUpdater />
+        <>
+          <TokenInit />
+          <TokenUpdater />
+          <Dashboard />
+          <Transfer />
+        </>
+      </ConnectGuard>
+    </WalletGuard>
+  </Container>
+);
 
 export default App;
